@@ -640,36 +640,38 @@
                     <ion-label style="font-family: headin;">
                         Name
                     </ion-label>
-                    <ion-input class="adjustinput" style="width: 85%;"></ion-input>
+                    <ion-input [(ngModel)]="name" type='text' class="adjustinput" style="width: 85%;"></ion-input>
                 </div>
 
                 <div class="field padtop">
                     <ion-label style="font-family: headin;">
                         Phone
                     </ion-label>
-                    <ion-input class="adjustinput" style="width: 85%;"></ion-input>
+                    <ion-input [(ngModel)]="phone" type='number' class="adjustinput" style="width: 85%;"></ion-input>
                 </div>
 
                 <div class="field padtop">
                     <ion-label style="font-family: headin;">
                         Email
                     </ion-label>
-                    <ion-input class="adjustinput" style="width: 85%;"></ion-input>
+                    <ion-input [(ngModel)]="email" type='email' class="adjustinput" style="width: 85%;"></ion-input>
                 </div>
 
                 <div class="field padtop">
                     <ion-label style="font-family: headin;">
                         Passowrd
                     </ion-label>
-                    <ion-input class="adjustinput" style="width: 85%;"></ion-input>
+                    <ion-input [(ngModel)]="password" type='password' class="adjustinput" style="width: 85%;">
+                    </ion-input>
                 </div>
 
 
 
                 <div style="position: relative;top: 1.5em;" class="padtop">
 
-                    <ion-button class="" style="max-width: 85%;background-color: black;color: white;" color="none"
-                        expand='block' mode='ios'>
+                    <ion-button (click)="registerAdmin()" class=""
+                        style="max-width: 85%;background-color: black;color: white;" color="none" expand='block'
+                        mode='ios'>
                         REGISTER
                     </ion-button>
 
