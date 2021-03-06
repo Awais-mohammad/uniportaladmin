@@ -125,7 +125,7 @@ export class HomePage {
 
   toggleforms(name: string) {
     this.currentdiv = name
-    this.getdata()
+ 
   }
 
   naviagte(page) {
@@ -140,7 +140,7 @@ export class HomePage {
       alert("Added University Successfully!");
 
     }).then(() => {
-      this.getdata()
+    
     })
   }
 
@@ -152,7 +152,7 @@ export class HomePage {
       alert("Added Program Successfully!");
 
     }).then(() => {
-      this.getdata()
+    
     })
   }
 

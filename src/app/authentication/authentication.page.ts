@@ -1,11 +1,22 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
+interface admin {
+  name: string;
+  phone: number;
+  email: string;
+  password: string;
+
+}
+
+
 @Component({
   selector: 'app-authentication',
   templateUrl: './authentication.page.html',
   styleUrls: ['./authentication.page.scss'],
 })
+
+
 export class AuthenticationPage implements OnInit {
 
   constructor(
