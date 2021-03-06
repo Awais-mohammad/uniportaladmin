@@ -123,10 +123,17 @@ export class HomePage {
     })
   }
 
-  currentdiv: string = 'addadmin';
+  currentdiv: string = 'main';
   programs: any[] = [];
   unis: any[] = [];
-
+  levelsavailable: string[] = ['a', 'b', 'c', 'd']
+  languageavailable: string[] = ['a', 'b', 'c', 'd']
+  durationsavailable: string[] = ['a', 'b', 'c', 'd']
+  currencyavailable: string[] = ['a', 'b', 'c', 'd']
+  modesavailable: string[] = ['a', 'b', 'c', 'd']
+  pacesarray: string[] = ['a', 'b', 'c', 'd']
+  students: string[] = ['a', 'b', 'c', 'd']
+  
   toggleforms(name: string) {
     this.currentdiv = name
   }
@@ -153,11 +160,24 @@ export class HomePage {
     })
   }
 
-  deleteProgram(ID){
+  deleteProgram(ID) {
     this.fireStore.collection('programs').doc(ID).delete();
   }
 
-  deleteUni(ID){
+  deleteUni(ID) {
     this.fireStore.collection('unis').doc(ID).delete();
+  }
+
+
+  chooselevel(value) {
+
+  }
+
+  chooselanguage(value) {
+
+  }
+
+  chooseduration(value) {
+
   }
 }

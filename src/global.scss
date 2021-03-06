@@ -36,3 +36,11 @@ ion-content {
     font-family: text;
     src: url("./assets/fonts/roboto_font/Roboto-Light.ttf");
 }
+ion-alert:not(.select-alert) {
+    --background: white;
+    --ion-text-color: black;
+
+    .alert-message {
+        color: white;
+    }
+}

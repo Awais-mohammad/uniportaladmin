@@ -18,6 +18,9 @@
                 <h3 style="width: 8px;"></h3>
                 <h3 (click)="toggleforms('addlocation')" class="headerlinks"
                     style="color: black;font-family: text;padding-right: 30px;">LOCATIONS</h3>
+                <h3 style="width: 8px;"></h3>
+                <h3 (click)="toggleforms('addlocation')" class="headerlinks"
+                    style="color: red;font-family: text;padding-right: 30px;">LOGOUT</h3>
 
             </div>
         </div>
@@ -88,13 +91,6 @@
 
         </div>
 
-        <ion-card (click)="naviagte('authentication')" style="background: white;position: relative;top: 12em;">
-            <ion-card-content style="display: flex;">
-                <ion-icon style="font-size: 60px;color: black;" color="danger" name="log-out-outline"></ion-icon>
-                <h1 style="font-family: headin;color: black;font-size: 18px;padding-top: 1em;">LOGOUT</h1>
-
-            </ion-card-content>
-        </ion-card>
 
     </div>
 
@@ -113,15 +109,54 @@
         <div style="display: flex;flex-wrap: wrap;padding: 30px;justify-content: center;">
 
 
-            <ion-card *ngFor="let item of [].constructor(20)" style="background: white;min-height: 10em;width: 25em;">
+            <ion-card *ngFor="let item of programs" style="background: white;min-height: 10em;width: 25em;">
                 <ion-card-content>
-                    <ion-icon style="font-size: 60px;color: black;" name="cellular-outline"></ion-icon>
-                    <h1 style="font-family: headin;color: black;font-size: 18px;padding-top: 1em;">PROGRAM NAME</h1>
-                    <p style="padding-top: 0.5em;font-family: text;color: black;">Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Minima vitae dolores facere
-                        exercitationem magni. Neque iusto eum sapiente adipisci molestiae!</p>
 
-                    <ion-button (click)="toggleforms('addprogram')" color="danger" mode='ios' fill='outline'>Remove
+                    <p style="color: black;font-family: text;" *ngIf="item.university"> <b>UNIVERSITY NAME:</b>
+                        {{item.university}}</p>
+
+                    <div style="display: flex;color: black;font-family: text;justify-content: space-between;">
+                        <p *ngIf="item.level"> <b>LEVEL:</b> {{item.level}}</p>
+
+                        <p *ngIf="item.country">
+                            <b>COUNTRY:</b>
+                            {{item.country}}
+                        </p>
+
+                        <p *ngIf="item.city"> <b>CITY:</b> {{item.city}}</p>
+
+                    </div>
+
+                    <div style="display: flex;color: black;font-family: text;justify-content: space-between;">
+                        <p *ngIf="item.name"> <b>NAME:</b> {{item.name}}</p>
+
+
+
+                        <p *ngIf="item.url"> <b>URL:</b> {{item.url}}</p>
+
+                    </div>
+
+                    <div style="display: flex;color: black;font-family: text;justify-content: space-between;">
+                        <p *ngIf="item.students"> <b>STUDENTS:</b> {{item.students}}</p>
+
+
+
+                        <p *ngIf="item.phone"> <b>URL:</b> {{item.phone}}</p>
+
+                    </div>
+
+                    <div style="display: flex;color: black;font-family: text;flex-direction: column;">
+                        <p> <b>DESCRIPTION:</b></p>
+
+
+
+                        <p *ngIf="item.desc">{{item.desc}}</p>
+
+                    </div>
+
+
+
+                    <ion-button (click)="deleteProgram(item.docID)" color="danger" mode='ios' fill='outline'>Remove
                     </ion-button>
                 </ion-card-content>
             </ion-card>
@@ -134,8 +169,11 @@
             <div style="display: flex;padding-top: 20px;">
                 <div style="display: flex;">
                     <ion-label style="color: black;padding-right: 6px;">LEVEL</ion-label>
-                    <ion-select style="width: 60px;height: 40px;background-color: white;">
-                        <ion-select-option color="none" style="--background: white;"></ion-select-option>
+                    <ion-select [(ngModel)]="program.level" (ionChange)="chooselevel(program.level)"
+                        style="width: 60px;height: 40px;background-color: white;">
+                        <ion-select-option *ngFor="let item of levelsavailable" value='{{item}}' color="none"
+                            style="color: black;">{{item}}
+                        </ion-select-option>
                     </ion-select>
 
                 </div>
@@ -157,8 +195,10 @@
             <div style="display: flex;padding-top: 20px;">
                 <div style="display: flex;">
                     <ion-label style="color: black;padding-right: 6px;">LANGUAGE</ion-label>
-                    <ion-select style="width: 10em;height: 40px;background-color: white;">
-                        <ion-select-option style="background-color: white;"></ion-select-option>
+                    <ion-select [(ngModel)]="program.language" (ionChange)="chooselanguage(program.language)"
+                        style="width: 10em;height: 40px;background-color: white;">
+                        <ion-select-option *ngFor="let item of languageavailable" value={{item}}
+                            style="background-color: white;">{{item}}</ion-select-option>
                     </ion-select>
 
                 </div>
@@ -191,7 +231,8 @@
                     <div style="width: 10px;">
 
                     </div>
-                    <ion-select style="width: 60px;height: 40px;background-color: white;">
+                    <ion-select [(ngModel)]="program.duration" (ionChange)="chooseduration(program.duration)"
+                        style="width: 60px;height: 40px;background-color: white;">
                         <ion-select-option style="background-color: white;"></ion-select-option>
                     </ion-select>
                 </div>
@@ -204,7 +245,9 @@
                     <ion-label style="color: black;padding-right: 6px;">STUDENTS</ion-label>
 
                     <ion-select style="width: 11.3em;height: 40px;background-color: white;">
-                        <ion-select-option style="background-color: white;"></ion-select-option>
+                        <ion-select-option *ngFor="let item of students" value='{{item}}'
+                            style="background-color: white;">
+                            {{item}}</ion-select-option>
                     </ion-select>
 
                 </div>
@@ -219,8 +262,10 @@
                     <div style="width: 10px;">
 
                     </div>
-                    <ion-select style="width: 60px;height: 40px;background-color: white;">
-                        <ion-select-option style="background-color: white;"></ion-select-option>
+                    <ion-select [(ngModel)]="program.duration" (ionChange)="chooseduration(program.duration)"
+                        style="width: 60px;height: 40px;background-color: white;">
+                        <ion-select-option *ngFor="let item of durationsavailable" value='{{item}}'
+                            style="background-color: white;">{{item}}</ion-select-option>
                     </ion-select>
                 </div>
                 <div style="width: 2em;">
@@ -233,7 +278,10 @@
 
                     </div>
                     <ion-select style="width: 10.5em;height: 40px;background-color: white;">
-                        <ion-select-option style="background-color: white;"></ion-select-option>
+                        <ion-select-option *ngFor="let item of students" value='{{item}}'
+                            style="background-color: white;">
+                            {{item}}
+                        </ion-select-option>
                     </ion-select>
 
                 </div>
@@ -249,7 +297,8 @@
 
                     </div>
                     <ion-select style="width: 60px;height: 40px;background-color: white;">
-                        <ion-select-option style="background-color: white;"></ion-select-option>
+                        <ion-select-option *ngFor="let item of currencyavailable" value='{{item}}'
+                            style="background-color: white;">{{item}}</ion-select-option>
                     </ion-select>
                 </div>
                 <div style="width: 2em;">
@@ -259,7 +308,10 @@
                 <div style="display: flex;">
                     <ion-label style="color: black;padding-right: 6px;">MODE</ion-label>
                     <ion-select style="width: 9.1em;height: 40px;background-color: white;">
-                        <ion-select-option style="background-color: white;"></ion-select-option>
+                        <ion-select-option *ngFor="let item of modesavailable" value='{{item}}'
+                            style="background-color: white;">
+                            {{item}}
+                        </ion-select-option>
                     </ion-select>
 
                 </div>
@@ -272,7 +324,10 @@
                 <div style="display: flex;">
                     <ion-label style="color: black;padding-right: 6px;">PACE</ion-label>
                     <ion-select style="width: 280px;height: 40px;background-color: white;">
-                        <ion-select-option style="background-color: white;"></ion-select-option>
+                        <ion-select-option *ngFor="let item of pacesarray" value='{{item}}'
+                            style="background-color: white;">
+                            {{item}}
+                        </ion-select-option>
                     </ion-select>
 
                 </div>
@@ -289,7 +344,7 @@
 
                 <div style="display: flex;">
                     <ion-label style="color: black;padding-right: 6px;">EMAIL</ion-label>
-                    <ion-input style="width: 30em;height: 40px;"  [(ngModel)]="program.email"></ion-input>
+                    <ion-input style="width: 30em;height: 40px;" [(ngModel)]="program.email"></ion-input>
 
                 </div>
 
@@ -318,7 +373,7 @@
             </div>
 
             <div style="text-align: right;padding-top: 10px;">
-                <ion-button mode='ios' (click) = "submitProgramForm()">SUBMIT</ion-button>
+                <ion-button mode='ios' (click)="submitProgramForm()">SUBMIT</ion-button>
             </div>
 
         </div>
@@ -357,32 +412,31 @@
                 </ion-select>
 
             </div>
-            <div style="display: flex;justify-content: center;color: black;flex-direction: column;">
+            <div *ngIf="unis" style="display: flex;justify-content: center;color: black;flex-direction: column;">
 
-                <ion-card *ngFor="let item of [].constructor(10)"
-                    style="background: white;color: black;max-width: 90%;">
+                <ion-card *ngFor="let item of unis" style="background: white;color: black;max-width: 90%;">
                     <ion-card-content>
                         <div style="display: flex;justify-content: space-between;">
-                            <h4 style="font-family: text;color: black;"> University NAME</h4>
-                            <h4 style="font-family: text;color: black;"> Country</h4>
-                            <h4 style="font-family: text;color: black;"> City</h4>
+                            <h4 style="font-family: text;color: black;">{{item.name}}</h4>
+                            <h4 style="font-family: text;color: black;"> {{item.country}}</h4>
+                            <h4 style="font-family: text;color: black;"> {{item.city}}</h4>
                         </div>
 
                         <div style="padding-top: 10px;">
-                            <h4 style="font-family: text;color: black;">Lorem ipsum dolor sit, amet consectetur
-                                adipisicing elit. Quaerat aliquid sit nam sed in iure culpa assumenda est praesentium.
-                                Corporis ut consectetur iste quam est, temporibus quod pariatur assumenda tempora.</h4>
+                            <h4 style="font-family: text;color: black;">
+                                {{item.desc}}
+                            </h4>
 
                         </div>
 
                         <div style="display: flex;justify-content: space-between;padding-top: 10px;">
-                            <h4 style="font-family: text;color: black;"> EMAIL</h4>
-                            <h4 style="font-family: text;color: black;"> TOTAL STUDENTS</h4>
-                            <h4 style="font-family: text;color: black;"> RANK</h4>
+                            <h4 style="font-family: text;color: black;"> {{item.contactEmail}}</h4>
+                            <h4 style="font-family: text;color: black;"> {{item.iStudents}}</h4>
+                            <h4 style="font-family: text;color: black;"> {{item.gRank}}</h4>
                         </div>
 
                         <br>
-                        <ion-button mode='ios' expand='block' color="danger">
+                        <ion-button (click)="deleteUni(item.docID)" mode='ios' expand='block' color="danger">
                             REMOVE
                         </ion-button>
                     </ion-card-content>
@@ -451,7 +505,7 @@
 
             <div style="display: flex;padding-top: 20px;">
                 <ion-label style="color: black;padding-right: 6px;">DESCRIPTION</ion-label>
-                <ion-input style="width: 14em;height: 40px;"  [(ngModel)]="uni.desc"></ion-input>
+                <ion-input style="width: 14em;height: 40px;" [(ngModel)]="uni.desc"></ion-input>
 
             </div>
 
@@ -459,12 +513,12 @@
 
                 <div style="display: flex;">
                     <ion-label style="color: black;padding-right: 6px;">TOTAL STUDENTS</ion-label>
-                    <ion-input style="width: 25%;height: 40px;"[(ngModel)]="uni.tStudents"></ion-input>
+                    <ion-input style="width: 25%;height: 40px;" [(ngModel)]="uni.tStudents"></ion-input>
 
                 </div>
 
                 <div style="width: 4%;">
-                    
+
                 </div>
 
                 <div style="display: flex;">
@@ -501,7 +555,8 @@
                     <ion-label style="color: black;padding-right: 6px;">CATEGORY</ion-label>
 
                     <ion-select style="width: 16em;height: 40px;background-color: white;">
-                        <ion-select-option style="background-color: white;" name = "normal"  [(ngModel)]="uni.scholarship[0].cat">normal</ion-select-option>
+                        <ion-select-option style="background-color: white;" name="normal"
+                            [(ngModel)]="uni.scholarship[0].cat">normal</ion-select-option>
                     </ion-select>
                 </div>
                 <div style="width: 2em;">
@@ -510,7 +565,8 @@
 
                 <div style="display: flex;">
                     <ion-label style="color: black;padding-right: 6px;">NAME</ion-label>
-                    <ion-input style="width:20em;height: 40px;background-color: white;" [(ngModel)]="uni.scholarship[0].name">
+                    <ion-input style="width:20em;height: 40px;background-color: white;"
+                        [(ngModel)]="uni.scholarship[0].name">
                     </ion-input>
 
                 </div>
@@ -522,7 +578,8 @@
 
                 <div style="display: flex;">
                     <ion-label style="color: black;padding-right: 6px;">AMOUNT</ion-label>
-                    <ion-input style="width: 280px;height: 40px;background-color: white;"[(ngModel)]="uni.scholarship[0].amount">
+                    <ion-input style="width: 280px;height: 40px;background-color: white;"
+                        [(ngModel)]="uni.scholarship[0].amount">
 
                     </ion-input>
 
@@ -565,7 +622,7 @@
                 <div style="display: flex;">
                     <ion-label style="color: black;padding-right: 6px;">CATEGORY</ion-label>
                     <ion-select style="width:20em;height: 40px;">
-                        <ion-select-option [(ngModel)]="uni.program[0].cat" name = "active">
+                        <ion-select-option [(ngModel)]="uni.program[0].cat" name="active">
                             Active
                         </ion-select-option>
                     </ion-select>
@@ -575,7 +632,7 @@
             </div>
 
             <div style="text-align: right;padding-top: 10px;">
-                <ion-button mode='ios' (click) = "submitUniForm()">SUBMIT</ion-button>
+                <ion-button mode='ios' (click)="submitUniForm()">SUBMIT</ion-button>
             </div>
 
         </div>
@@ -651,7 +708,7 @@
 
         <div
             style="background:white;min-width: 50%;height: 20em;padding: 20px;overflow-y: auto;position: relative;top: 10em;">
-            <h2 style="color: black;font-family: headin;font-size: 19px;text-align: center;">UNIVERSITIES LISTED</h2>
+            <h2 style="color: black;font-family: headin;font-size: 19px;text-align: center;">LOCATIONS LISTED</h2>
 
             <div style="display: flex;justify-content: center;flex-direction: column;">
 
