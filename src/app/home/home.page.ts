@@ -35,9 +35,12 @@ interface program {
   street: string;
   university: string;
   duration: string;
-  students: number;
+  durationUnit: string;
+  students: string;
   lFee: number;
+  lFeeUnit: string;
   iFee: number;
+  iFeeUnit: string;
   cat: string;
   mode: string;
   pace: string;
@@ -90,9 +93,12 @@ export class HomePage {
     street: "",
     university: "",
     duration: "",
-    students: 0,
+    durationUnit: "",
+    students: "",
     lFee: 0,
+    lFeeUnit: "",
     iFee: 0,
+    iFeeUnit: "",
     cat: "",
     mode: "",
     pace: "",
@@ -115,13 +121,13 @@ export class HomePage {
   currentdiv: string = 'main';
   programs: any[] = [];
   unis: any[] = [];
-  levelsavailable: string[] = ['a', 'b', 'c', 'd']
-  languageavailable: string[] = ['a', 'b', 'c', 'd']
-  durationsavailable: string[] = ['a', 'b', 'c', 'd']
-  currencyavailable: string[] = ['a', 'b', 'c', 'd']
-  modesavailable: string[] = ['a', 'b', 'c', 'd']
+  levelsavailable: string[] = ['1', '2', '3', '4']
+  languageavailable: string[] = ['english', 'chinese', 'hindi', 'spanish', 'french', 'arabic', 'bengali', 'russian', 'portuguese', 'indonesian', 'urdu', 'german', 'japanese', 'swahili', 'marathi', 'telugu', 'punjabi', 'chinese', 'tamil', 'turkish']
+  durationsavailable: string[] = ['days', 'months', 'years']
+  currencyavailable: string[] = ['pound sterling', 'us dolar', 'euro', 'swiss franc', 'canadian dollar',]
+  modesavailable: string[] = ['full-time', 'part-time', 'distance learning', 'classroom based', 'blended learning']
   pacesarray: string[] = ['a', 'b', 'c', 'd']
-  students: string[] = ['a', 'b', 'c', 'd']
+  students: string[] = ['< 1,000', '< 10,000', '< 50,000', '> 100,000']
 
   toggleforms(name: string) {
     this.currentdiv = name;
@@ -183,7 +189,6 @@ export class HomePage {
 
   chooselanguage(value) {
     console.log(value);
-
   }
 
   chooseduration(value) {

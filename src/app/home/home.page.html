@@ -231,9 +231,10 @@
                     <div style="width: 10px;">
 
                     </div>
-                    <ion-select [(ngModel)]="program.duration" (ionChange)="chooseduration(program.duration)"
+                    <ion-select [(ngModel)]="program.durationUnit" (ionChange)="chooseduration(program.durationUnit)"
                         style="width: 60px;height: 40px;background-color: white;">
-                        <ion-select-option style="background-color: white;"></ion-select-option>
+                        <ion-select-option *ngFor="let item of durationsavailable" value='{{item}}'
+                            style="background-color: white;"></ion-select-option>
                     </ion-select>
                 </div>
 
@@ -244,7 +245,8 @@
                 <div style="display: flex;">
                     <ion-label style="color: black;padding-right: 6px;">STUDENTS</ion-label>
 
-                    <ion-select style="width: 11.3em;height: 40px;background-color: white;">
+                    <ion-select [(ngModel)]="program.studentsUnit" (ionChange)="chooseduration(program.studentsUnit)"
+                        style="width: 60px;height: 40px;background-color: white;">
                         <ion-select-option *ngFor="let item of students" value='{{item}}'
                             style="background-color: white;">
                             {{item}}</ion-select-option>
@@ -260,16 +262,15 @@
                     <ion-label style="color: black;padding-right: 6px;">FEE LOCAL </ion-label>
                     <ion-input style="width: 30%;height: 40px;" [(ngModel)]="program.lFee"></ion-input>
                     <div style="width: 10px;">
-
                     </div>
-                    <ion-select [(ngModel)]="program.duration" (ionChange)="chooseduration(program.duration)"
+                    <ion-select [(ngModel)]="program.lFeeUnit" (ionChange)="chooseduration(program.lFeeUnit)"
                         style="width: 60px;height: 40px;background-color: white;">
                         <ion-select-option *ngFor="let item of durationsavailable" value='{{item}}'
                             style="background-color: white;">{{item}}</ion-select-option>
                     </ion-select>
                 </div>
-                <div style="width: 2em;">
 
+                <div style="width: 2em;">
                 </div>
 
                 <div style="display: flex;">
@@ -277,8 +278,8 @@
                     <div style="width: 10px;">
 
                     </div>
-                    <ion-select style="width: 10.5em;height: 40px;background-color: white;">
-                        <ion-select-option *ngFor="let item of students" value='{{item}}'
+                    <ion-select [(ngModel)]="program.cat" style="width: 10.5em;height: 40px;background-color: white;">
+                        <ion-select-option *ngFor="let item of categories" value='{{item}}'
                             style="background-color: white;">
                             {{item}}
                         </ion-select-option>
@@ -296,7 +297,7 @@
                     <div style="width: 10px;">
 
                     </div>
-                    <ion-select style="width: 60px;height: 40px;background-color: white;">
+                    <ion-select [(ngModel)]="program.lFeeUnit" style="width: 60px;height: 40px;background-color: white;">
                         <ion-select-option *ngFor="let item of currencyavailable" value='{{item}}'
                             style="background-color: white;">{{item}}</ion-select-option>
                     </ion-select>
@@ -307,7 +308,7 @@
 
                 <div style="display: flex;">
                     <ion-label style="color: black;padding-right: 6px;">MODE</ion-label>
-                    <ion-select style="width: 9.1em;height: 40px;background-color: white;">
+                    <ion-select [(ngModel)]="program.mode" style="width: 9.1em;height: 40px;background-color: white;">
                         <ion-select-option *ngFor="let item of modesavailable" value='{{item}}'
                             style="background-color: white;">
                             {{item}}
@@ -323,7 +324,7 @@
 
                 <div style="display: flex;">
                     <ion-label style="color: black;padding-right: 6px;">PACE</ion-label>
-                    <ion-select style="width: 280px;height: 40px;background-color: white;">
+                    <ion-select  [(ngModel)]="program.pace" style="width: 280px;height: 40px;background-color: white;">
                         <ion-select-option *ngFor="let item of pacesarray" value='{{item}}'
                             style="background-color: white;">
                             {{item}}
@@ -537,9 +538,9 @@
                 <div style="display: flex;">
                     <ion-label style="color: black;padding-right: 6px;">CATEGORY</ion-label>
 
-                    <ion-select style="width: 16em;height: 40px;background-color: white;">
-                        <ion-select-option style="background-color: white;" name="normal"
-                            [(ngModel)]="uni.scholarship[0].cat">normal</ion-select-option>
+                    <ion-select  [(ngModel)]="uni.scholarship[0].cat" style="width: 16em;height: 40px;background-color: white;">
+                        <ion-select-option *ngFor="let item of scholarships" value='{{item}}' style="background-color: white;"
+                           >{{item}}</ion-select-option>
                     </ion-select>
                 </div>
                 <div style="width: 2em;">
@@ -605,8 +606,8 @@
                 <div style="display: flex;">
                     <ion-label style="color: black;padding-right: 6px;">CATEGORY</ion-label>
                     <ion-select style="width:20em;height: 40px;">
-                        <ion-select-option [(ngModel)]="uni.program[0].cat" name="active">
-                            Active
+                        <ion-select-option>
+                            
                         </ion-select-option>
                     </ion-select>
 
