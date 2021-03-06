@@ -109,7 +109,7 @@ export class HomePage {
     private fireStore: AngularFirestore,
     private afAuth: AngularFireAuth,
   ) {
-
+    this.getdata();
   }
 
   currentdiv: string = 'main';
@@ -124,8 +124,7 @@ export class HomePage {
   students: string[] = ['a', 'b', 'c', 'd']
 
   toggleforms(name: string) {
-    this.currentdiv = name
- 
+    this.currentdiv = name;
   }
 
   naviagte(page) {
@@ -140,7 +139,7 @@ export class HomePage {
       alert("Added University Successfully!");
 
     }).then(() => {
-    
+      this.getdata()
     })
   }
 
@@ -152,7 +151,7 @@ export class HomePage {
       alert("Added Program Successfully!");
 
     }).then(() => {
-    
+      this.getdata()
     })
   }
 
