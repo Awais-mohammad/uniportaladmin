@@ -109,6 +109,62 @@ export class HomePage {
     private fireStore: AngularFirestore,
     private afAuth: AngularFireAuth,
   ) {
+
+  }
+
+  currentdiv: string = 'main';
+  programs: any[] = [];
+  unis: any[] = [];
+  levelsavailable: string[] = ['a', 'b', 'c', 'd']
+  languageavailable: string[] = ['a', 'b', 'c', 'd']
+  durationsavailable: string[] = ['a', 'b', 'c', 'd']
+  currencyavailable: string[] = ['a', 'b', 'c', 'd']
+  modesavailable: string[] = ['a', 'b', 'c', 'd']
+  pacesarray: string[] = ['a', 'b', 'c', 'd']
+  students: string[] = ['a', 'b', 'c', 'd']
+
+  toggleforms(name: string) {
+    this.currentdiv = name
+    this.getdata()
+  }
+
+  naviagte(page) {
+    this.router.navigate([page])
+  }
+
+  submitUniForm() {
+    this.uni.uid = this.afAuth.auth.currentUser.uid;
+    this.fireStore.collection('unis').add(this.uni).then(data => {
+      const docID = data.id;
+      this.fireStore.collection('unis').doc(docID).update({ docID })
+      alert("Added University Successfully!");
+
+    }).then(() => {
+      this.getdata()
+    })
+  }
+
+  submitProgramForm() {
+    this.uni.uid = this.afAuth.auth.currentUser.uid;
+    this.fireStore.collection('programs').add(this.program).then(data => {
+      const docID = data.id;
+      this.fireStore.collection('programs').doc(docID).update({ docID })
+      alert("Added Program Successfully!");
+
+    }).then(() => {
+      this.getdata()
+    })
+  }
+
+  deleteProgram(ID) {
+    this.fireStore.collection('programs').doc(ID).delete();
+  }
+
+  deleteUni(ID) {
+    this.fireStore.collection('unis').doc(ID).delete();
+  }
+
+  getdata() {
     this.fireStore.collection('programs').get().forEach(data => {
       data.docs.forEach(element => {
         this.programs.push(element.data());
@@ -122,58 +178,12 @@ export class HomePage {
       console.log(this.unis);
     })
   }
-
-  currentdiv: string = 'main';
-  programs: any[] = [];
-  unis: any[] = [];
-  levelsavailable: string[] = ['a', 'b', 'c', 'd']
-  languageavailable: string[] = ['a', 'b', 'c', 'd']
-  durationsavailable: string[] = ['a', 'b', 'c', 'd']
-  currencyavailable: string[] = ['a', 'b', 'c', 'd']
-  modesavailable: string[] = ['a', 'b', 'c', 'd']
-  pacesarray: string[] = ['a', 'b', 'c', 'd']
-  students: string[] = ['a', 'b', 'c', 'd']
-  
-  toggleforms(name: string) {
-    this.currentdiv = name
-  }
-
-  naviagte(page) {
-    this.router.navigate([page])
-  }
-
-  submitUniForm() {
-    this.uni.uid = this.afAuth.auth.currentUser.uid;
-    this.fireStore.collection('unis').add(this.uni).then(data => {
-      const docID = data.id;
-      this.fireStore.collection('unis').doc(docID).update({ docID })
-      alert("Added University Successfully!");
-    })
-  }
-
-  submitProgramForm() {
-    this.uni.uid = this.afAuth.auth.currentUser.uid;
-    this.fireStore.collection('programs').add(this.program).then(data => {
-      const docID = data.id;
-      this.fireStore.collection('programs').doc(docID).update({ docID })
-      alert("Added Program Successfully!");
-    })
-  }
-
-  deleteProgram(ID) {
-    this.fireStore.collection('programs').doc(ID).delete();
-  }
-
-  deleteUni(ID) {
-    this.fireStore.collection('unis').doc(ID).delete();
-  }
-
-
   chooselevel(value) {
 
   }
 
   chooselanguage(value) {
+    console.log(value);
 
   }
 
