@@ -14,7 +14,7 @@ interface uni {
   iStudents: number;
   gRank: number;
   scholarship: [{
-    cat: string;
+    cat: string[];
     name: string;
     amount: number;
     per: number;
@@ -73,7 +73,7 @@ export class HomePage {
     iStudents: 0,
     gRank: 0,
     scholarship: [{
-      cat: "",
+      cat: [],
       name: "",
       amount: 0,
       per: 0,
@@ -130,12 +130,13 @@ export class HomePage {
   modesavailable: string[] = ['full-time', 'part-time', 'distance learning', 'classroom based', 'blended learning']
   pacesarray: string[] = ['a', 'b', 'c', 'd']
   students: string[] = ['< 1,000', '< 10,000', '< 50,000', '> 100,000']
-  categories: string[] = ['computing','engineering','management','health and sciences','pharmacy']
-  scholarships: string[] = ['academic','community service','first in family','legacy','military','no essay','prestigeous','renewable','writing']
+  categories: string[] = ['computing', 'engineering', 'management', 'health and sciences', 'pharmacy']
+  scholarships: string[] = ['academic', 'community service', 'first in family', 'legacy', 'military', 'no essay', 'prestigeous', 'renewable', 'writing']
   name: string;
   email: string;
   password: string;
   phone: number;
+  temp: string;
 
   toggleforms(name: string) {
     this.currentdiv = name;
@@ -244,6 +245,14 @@ export class HomePage {
   }
 
   chooseduration(value) {
+
+  }
+  temparray: any[] = []
+  choosecat(value) {
+    console.log('called');
+
+    this.temparray.push(value)
+    console.log(this.temparray);
 
   }
 }

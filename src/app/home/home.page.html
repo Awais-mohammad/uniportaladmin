@@ -15,9 +15,7 @@
                 <h3 style="width: 8px;"></h3>
                 <h3 (click)="toggleforms('university')" class="headerlinks"
                     style="color: black;font-family: text;padding-right: 30px;">UNIVERSITIES</h3>
-                <h3 style="width: 8px;"></h3>
-                <h3 (click)="toggleforms('addlocation')" class="headerlinks"
-                    style="color: black;font-family: text;padding-right: 30px;">LOCATIONS</h3>
+
                 <h3 style="width: 8px;"></h3>
                 <h3 (click)="toggleforms('addlocation')" class="headerlinks"
                     style="color: red;font-family: text;padding-right: 30px;">LOGOUT</h3>
@@ -278,7 +276,8 @@
                     <div style="width: 10px;">
 
                     </div>
-                    <ion-select [(ngModel)]="program.cat" style="width: 10.5em;height: 40px;background-color: white;">
+                    <ion-select (ionChange)="choosecat(temp)" [(ngModel)]="temp"
+                        style="width: 10.5em;height: 40px;background-color: white;">
                         <ion-select-option *ngFor="let item of categories" value='{{item}}'
                             style="background-color: white;">
                             {{item}}
@@ -297,7 +296,8 @@
                     <div style="width: 10px;">
 
                     </div>
-                    <ion-select [(ngModel)]="program.lFeeUnit" style="width: 60px;height: 40px;background-color: white;">
+                    <ion-select [(ngModel)]="program.lFeeUnit"
+                        style="width: 60px;height: 40px;background-color: white;">
                         <ion-select-option *ngFor="let item of currencyavailable" value='{{item}}'
                             style="background-color: white;">{{item}}</ion-select-option>
                     </ion-select>
@@ -324,7 +324,7 @@
 
                 <div style="display: flex;">
                     <ion-label style="color: black;padding-right: 6px;">PACE</ion-label>
-                    <ion-select  [(ngModel)]="program.pace" style="width: 280px;height: 40px;background-color: white;">
+                    <ion-select [(ngModel)]="program.pace" style="width: 280px;height: 40px;background-color: white;">
                         <ion-select-option *ngFor="let item of pacesarray" value='{{item}}'
                             style="background-color: white;">
                             {{item}}
@@ -538,9 +538,10 @@
                 <div style="display: flex;">
                     <ion-label style="color: black;padding-right: 6px;">CATEGORY</ion-label>
 
-                    <ion-select  [(ngModel)]="uni.scholarship[0].cat" style="width: 16em;height: 40px;background-color: white;">
-                        <ion-select-option *ngFor="let item of scholarships" value='{{item}}' style="background-color: white;"
-                           >{{item}}</ion-select-option>
+                    <ion-select (ionChange)="choosecat(temp)" [(ngModel)]="temp"
+                        style="width: 16em;height: 40px;background-color: white;">
+                        <ion-select-option *ngFor="let item of scholarships" value='{{item}}'
+                            style="background-color: white;">{{item}}</ion-select-option>
                     </ion-select>
                 </div>
                 <div style="width: 2em;">
@@ -605,9 +606,9 @@
                 </div>
                 <div style="display: flex;">
                     <ion-label style="color: black;padding-right: 6px;">CATEGORY</ion-label>
-                    <ion-select style="width:20em;height: 40px;">
-                        <ion-select-option>
-                            
+                    <ion-select (ionChange)="choosecat(temp)" [(ngModel)]="temp" style="width:20em;height: 40px;">
+                        <ion-select-option *ngFor="let item of categories" value='{{item}}'>
+                            {{item}}
                         </ion-select-option>
                     </ion-select>
 
@@ -681,104 +682,6 @@
         </div>
     </div>
 
-    <!--
-            
-    ///////////////////////////////////////
-    ///////    ADD locations       //////
-    ////////////////////////////////////////
-        -->
-
-    <div style="display: flex;justify-content: center;align-items: center;flex-direction: column;"
-        *ngIf="currentdiv == 'addlocation'">
-        <h1 style="color: black;font-family: headin;font-size: 30px;">LOCATIONS MANAGEMENT</h1>
-
-        <div
-            style="background:white;min-width: 50%;height: 20em;padding: 20px;overflow-y: auto;position: relative;top: 10em;">
-            <h2 style="color: black;font-family: headin;font-size: 19px;text-align: center;">LOCATIONS LISTED</h2>
-
-            <div style="display: flex;justify-content: center;flex-direction: column;">
-
-
-
-                <ion-input placeholder="ADD COUNTRY " style="width: 100%;height: 40px;background-color: white;">
-
-                </ion-input>
-
-
-                <div style="height: 1em;">
-
-                </div>
-                <ion-input placeholder="ADD CITIES " style="width: 100%;height: 40px;background-color: white;">
-
-                </ion-input>
-
-                <div style="height: 1em;">
-
-                </div>
-
-                <ion-button mode='ios' color="primary">ADD</ion-button>
-
-            </div>
-            <div style="display: flex;color: black;">
-
-                <div style="display: flex;flex-direction: column;width: 50%;">
-                    <ion-card *ngFor="let item of [].constructor(10)"
-                        style="background: white;color: black;max-width: 90%;">
-                        <ion-card-content>
-
-
-
-                            <div style="display: flex;justify-content: space-between;padding-top: 10px;">
-                                <h4 style="font-family: text;color: black;"> COUNTRY</h4>
-
-                            </div>
-
-                            <br>
-                            <ion-button mode='ios' expand='block' color="danger">
-                                REMOVE
-                            </ion-button>
-                        </ion-card-content>
-
-                    </ion-card>
-                </div>
-
-
-                <div style="display: flex;flex-direction: column;width: 50%;">
-                    <ion-card *ngFor="let item of [].constructor(10)"
-                        style="background: white;color: black;max-width: 90%;">
-                        <ion-card-content>
-
-
-
-                            <div style="display: flex;justify-content: space-between;padding-top: 10px;">
-                                <h4 style="font-family: text;color: black;"> CITY</h4>
-
-                            </div>
-
-                            <br>
-                            <ion-button mode='ios' expand='block' color="danger">
-                                REMOVE
-                            </ion-button>
-                        </ion-card-content>
-
-                    </ion-card>
-                </div>
-
-            </div>
-
-            <div style="width: 10%;">
-
-
-
-            </div>
-
-
-
-        </div>
-
-
-
-    </div>
 </ion-content>
 
 <ion-footer>
