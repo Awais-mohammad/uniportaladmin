@@ -128,6 +128,8 @@ export class HomePage {
   modesavailable: string[] = ['full-time', 'part-time', 'distance learning', 'classroom based', 'blended learning']
   pacesarray: string[] = ['a', 'b', 'c', 'd']
   students: string[] = ['< 1,000', '< 10,000', '< 50,000', '> 100,000']
+  categories: string[] = ['computing','engineering','management','health and sciences','pharmacy']
+  scholarships: string[] = ['academic','community service','first in family','legacy','military','no essay','prestigeous','renewable','writing']
 
   toggleforms(name: string) {
     this.currentdiv = name;
