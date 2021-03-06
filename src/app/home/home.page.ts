@@ -41,6 +41,7 @@ interface program {
   lFeeUnit: string;
   iFee: number;
   iFeeUnit: string;
+  studentsUnit: string;
   cat: string;
   mode: string;
   pace: string;
@@ -101,6 +102,7 @@ export class HomePage {
     iFeeUnit: "",
     cat: "",
     mode: "",
+    studentsUnit: "",
     pace: "",
     url: "",
     email: "",
@@ -127,17 +129,15 @@ export class HomePage {
   currencyavailable: string[] = ['pound sterling', 'us dolar', 'euro', 'swiss franc', 'canadian dollar',]
   modesavailable: string[] = ['full-time', 'part-time', 'distance learning', 'classroom based', 'blended learning']
   pacesarray: string[] = ['a', 'b', 'c', 'd']
-<<<<<<< Updated upstream
+
   students: string[] = ['< 1,000', '< 10,000', '< 50,000', '> 100,000']
-  categories: string[] = ['computing','engineering','management','health and sciences','pharmacy']
-  scholarships: string[] = ['academic','community service','first in family','legacy','military','no essay','prestigeous','renewable','writing']
-=======
-  students: string[] = ['a', 'b', 'c', 'd']
+  categories: string[] = ['computing', 'engineering', 'management', 'health and sciences', 'pharmacy']
+  scholarships: string[] = ['academic', 'community service', 'first in family', 'legacy', 'military', 'no essay', 'prestigeous', 'renewable', 'writing']
   name: string;
   email: string;
   password: string;
   phone: number;
->>>>>>> Stashed changes
+
 
   toggleforms(name: string) {
     this.currentdiv = name;
@@ -200,7 +200,7 @@ export class HomePage {
   chooselanguage(value) {
     console.log(value);
   }
-  
+
   registerAdmin() {
     if (!this.email) {
       alert('field cannot be blank')
@@ -218,8 +218,28 @@ export class HomePage {
       alert('field cannot be blank')
     }
     else {
+      const name = this.name;
+      const email = this.email;
+      const phone = this.phone
+      const password = this.password
+      const timeJoined = new Date()
 
-      alert('ALL OKEY')
+      this.afAuth.auth.createUserWithEmailAndPassword(this.email, this.password).then(user => {
+        const userID = user.user.uid;
+        this.fireStore.collection('admins').doc(userID).set({
+          name,
+          email,
+          phone,
+          password,
+          timeJoined,
+        }).then(() => {
+          alert('user added')
+        }).catch(Err => {
+          alert(JSON.stringify(Err.message))
+        })
+      }).catch(err => {
+        alert(JSON.stringify(err.message))
+      })
     }
   }
 
