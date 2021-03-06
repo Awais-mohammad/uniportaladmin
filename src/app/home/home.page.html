@@ -1,0 +1,745 @@
+<ion-header color="none" style="background: white;">
+    <ion-toolbar color="none" style="background: white;padding:10px">
+
+        <div style="display: flex;justify-content: space-between;">
+            <div style="text-align: left;">
+                <h1 style="color: black;font-family: headin;">ADMINPANEL</h1>
+            </div>
+
+            <div style="text-align: right;display: flex;justify-content: right;align-items: right;">
+                <h3 (click)="toggleforms('addprogram')" class="headerlinks"
+                    style="color: black;font-family: text;padding-right: 30px;">PROGRAMS</h3>
+                <h3 style="width: 8px;"></h3>
+                <h3 (click)="toggleforms('addadmin')" class="headerlinks"
+                    style="color: black;font-family: text;padding-right: 30px;">ADMINS</h3>
+                <h3 style="width: 8px;"></h3>
+                <h3 (click)="toggleforms('university')" class="headerlinks"
+                    style="color: black;font-family: text;padding-right: 30px;">UNIVERSITIES</h3>
+                <h3 style="width: 8px;"></h3>
+                <h3 (click)="toggleforms('addlocation')" class="headerlinks"
+                    style="color: black;font-family: text;padding-right: 30px;">LOCATIONS</h3>
+
+            </div>
+        </div>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <!--
+            
+    ///////////////////////////////////////
+    ///////    MAIN PAGE       //////
+    ////////////////////////////////////////
+        -->
+
+    <div *ngIf="currentdiv == 'main'"
+        style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
+        <h1 style="color: black;font-family: headin;font-size: 30px;">ADMIN PANEL</h1>
+        <div
+            style="display: flex;flex-wrap: wrap;text-align: center;justify-content: center;align-items: center;position: relative;top: 8em;">
+            <ion-card style="background: white;min-height: 10em;width: 25em;">
+                <ion-card-content>
+                    <ion-icon style="font-size: 60px;color: black;" name="add-circle-outline"></ion-icon>
+                    <h1 style="font-family: headin;color: black;font-size: 18px;padding-top: 1em;">MANAGE PROGRAMS</h1>
+                    <p style="padding-top: 0.5em;font-family: text;color: black;">Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Minima vitae dolores facere
+                        exercitationem magni. Neque iusto eum sapiente adipisci molestiae!</p>
+
+                    <ion-button (click)="toggleforms('addprogram')" mode='ios' fill='outline'>ADD</ion-button>
+                </ion-card-content>
+            </ion-card>
+
+            <ion-card style="background: white;min-height: 10em;width: 25em;">
+                <ion-card-content>
+                    <ion-icon style="font-size: 60px;color: black;" name="add-circle-outline"></ion-icon>
+                    <h1 style="font-family: headin;color: black;font-size: 18px;padding-top: 1em;">ADD ADMINS
+                    </h1>
+                    <p style="padding-top: 0.5em;font-family: text;color: black;">Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Minima vitae dolores facere
+                        exercitationem magni. Neque iusto eum sapiente adipisci molestiae!</p>
+                    <ion-button (click)="toggleforms('addadmin')" mode='ios' fill='outline'>ADD</ion-button>
+                </ion-card-content>
+            </ion-card>
+
+            <ion-card style="background: white;min-height: 10em;width: 25em;">
+                <ion-card-content>
+                    <ion-icon style="font-size: 60px;color: black;" name="add-circle-outline"></ion-icon>
+                    <h1 style="font-family: headin;color: black;font-size: 18px;padding-top: 1em;">MANAGE UNIVERSITIES
+                    </h1>
+                    <p style="padding-top: 0.5em;font-family: text;color: black;">Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Minima vitae dolores facere
+                        exercitationem magni. Neque iusto eum sapiente adipisci molestiae!</p>
+                    <ion-button (click)="toggleforms('university')" mode='ios' fill='outline'>ADD</ion-button>
+                </ion-card-content>
+            </ion-card>
+
+            <ion-card style="background: white;min-height: 10em;width: 25em;">
+                <ion-card-content>
+                    <ion-icon style="font-size: 60px;color: black;" name="add-circle-outline"></ion-icon>
+                    <h1 style="font-family: headin;color: black;font-size: 18px;padding-top: 1em;">MANAGE LOCATIONS</h1>
+                    <p style="padding-top: 0.5em;font-family: text;color: black;">Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Minima vitae dolores facere
+                        exercitationem magni. Neque iusto eum sapiente adipisci molestiae!</p>
+                    <ion-button (click)="toggleforms('addlocation')" mode='ios' fill='outline'>ADD</ion-button>
+                </ion-card-content>
+            </ion-card>
+
+        </div>
+
+        <ion-card (click)="naviagte('authentication')" style="background: white;position: relative;top: 12em;">
+            <ion-card-content style="display: flex;">
+                <ion-icon style="font-size: 60px;color: black;" color="danger" name="log-out-outline"></ion-icon>
+                <h1 style="font-family: headin;color: black;font-size: 18px;padding-top: 1em;">LOGOUT</h1>
+
+            </ion-card-content>
+        </ion-card>
+
+    </div>
+
+    <!--
+            
+    ///////////////////////////////////////
+    ///////    PROGRAMSSS PAGE       //////
+    ////////////////////////////////////////
+        -->
+
+    <div style="display: flex;justify-content: center;align-items: center;flex-direction: column;"
+        *ngIf="currentdiv == 'addprogram'">
+
+        <h1 style="color: black;font-family: headin;font-size: 30px;">PROGRAMS</h1>
+
+        <div style="display: flex;flex-wrap: wrap;padding: 30px;justify-content: center;">
+
+
+            <ion-card *ngFor="let item of [].constructor(20)" style="background: white;min-height: 10em;width: 25em;">
+                <ion-card-content>
+                    <ion-icon style="font-size: 60px;color: black;" name="cellular-outline"></ion-icon>
+                    <h1 style="font-family: headin;color: black;font-size: 18px;padding-top: 1em;">PROGRAM NAME</h1>
+                    <p style="padding-top: 0.5em;font-family: text;color: black;">Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Minima vitae dolores facere
+                        exercitationem magni. Neque iusto eum sapiente adipisci molestiae!</p>
+
+                    <ion-button (click)="toggleforms('addprogram')" color="danger" mode='ios' fill='outline'>Remove
+                    </ion-button>
+                </ion-card-content>
+            </ion-card>
+        </div>
+
+        <div style="background: white;min-height: 20em;min-width: 30em;position: relative;top: 1em;padding:20px;">
+
+            <h1 style="color: black;font-family: headin;text-align: center;">ADD A PROGRAM</h1>
+
+            <div style="display: flex;padding-top: 20px;">
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">LEVEL</ion-label>
+                    <ion-select style="width: 60px;height: 40px;background-color: white;">
+                        <ion-select-option color="none" style="--background: white;"></ion-select-option>
+                    </ion-select>
+
+                </div>
+
+                <div style="display: flex;padding-left: 20px;">
+                    <ion-label style="color: black;padding-right: 6px;">COUNTRY</ion-label>
+                    <ion-input style="width: 15em;height: 40px;"></ion-input>
+
+                </div>
+
+                <div style="display: flex;padding-left: 20px;">
+                    <ion-label style="color: black;padding-right: 6px;">CITY</ion-label>
+                    <ion-input style="width: 16em;height: 40px;"></ion-input>
+
+                </div>
+
+            </div>
+
+            <div style="display: flex;padding-top: 20px;">
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">LANGUAGE</ion-label>
+                    <ion-select style="width: 10em;height: 40px;background-color: white;">
+                        <ion-select-option style="background-color: white;"></ion-select-option>
+                    </ion-select>
+
+                </div>
+
+
+
+                <div style="display: flex;padding-left: 20px;">
+                    <ion-label style="color: black;padding-right: 6px;">STREET</ion-label>
+                    <ion-input style="width: 25em;height: 40px;"></ion-input>
+
+                </div>
+
+            </div>
+
+            <div style="display: flex;padding-top: 20px;">
+
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">UNIVERSITY</ion-label>
+                    <ion-input style="width: 47.5em;height: 40px;"></ion-input>
+
+                </div>
+
+            </div>
+
+            <div style="display: flex;padding-top: 20px;">
+
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">DURATION</ion-label>
+                    <ion-input style="width: 30%;height: 40px;"></ion-input>
+                    <div style="width: 10px;">
+
+                    </div>
+                    <ion-select style="width: 60px;height: 40px;background-color: white;">
+                        <ion-select-option style="background-color: white;"></ion-select-option>
+                    </ion-select>
+                </div>
+
+                <div style="width: 2em;">
+
+                </div>
+
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">STUDENTS</ion-label>
+
+                    <ion-select style="width: 11.3em;height: 40px;background-color: white;">
+                        <ion-select-option style="background-color: white;"></ion-select-option>
+                    </ion-select>
+
+                </div>
+
+            </div>
+
+            <div style="display: flex;padding-top: 20px;">
+
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">FEE LOCAL </ion-label>
+                    <ion-input style="width: 30%;height: 40px;"></ion-input>
+                    <div style="width: 10px;">
+
+                    </div>
+                    <ion-select style="width: 60px;height: 40px;background-color: white;">
+                        <ion-select-option style="background-color: white;"></ion-select-option>
+                    </ion-select>
+                </div>
+                <div style="width: 2em;">
+
+                </div>
+
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">CATEGORY</ion-label>
+                    <div style="width: 10px;">
+
+                    </div>
+                    <ion-select style="width: 10.5em;height: 40px;background-color: white;">
+                        <ion-select-option style="background-color: white;"></ion-select-option>
+                    </ion-select>
+
+                </div>
+
+            </div>
+
+            <div style="display: flex;padding-top: 20px;">
+
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">FEE INTERNATIONAL </ion-label>
+                    <ion-input style="width: 30%;height: 40px;"></ion-input>
+                    <div style="width: 10px;">
+
+                    </div>
+                    <ion-select style="width: 60px;height: 40px;background-color: white;">
+                        <ion-select-option style="background-color: white;"></ion-select-option>
+                    </ion-select>
+                </div>
+                <div style="width: 2em;">
+
+                </div>
+
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">MODE</ion-label>
+                    <ion-select style="width: 9.1em;height: 40px;background-color: white;">
+                        <ion-select-option style="background-color: white;"></ion-select-option>
+                    </ion-select>
+
+                </div>
+
+            </div>
+
+
+            <div style="display: flex;padding-top: 20px;justify-content: space-between;">
+
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">PACE</ion-label>
+                    <ion-select style="width: 280px;height: 40px;background-color: white;">
+                        <ion-select-option style="background-color: white;"></ion-select-option>
+                    </ion-select>
+
+                </div>
+
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">PROGRAM URL</ion-label>
+                    <ion-input style="width: 100%;height: 40px;"></ion-input>
+
+                </div>
+
+            </div>
+
+            <div style="display: flex;padding-top: 20px;justify-content: space-between;">
+
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">EMAIL</ion-label>
+                    <ion-input style="width: 30em;height: 40px;"></ion-input>
+
+                </div>
+
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">PHONE</ion-label>
+                    <ion-input style="width: 14em;height: 40px;"></ion-input>
+
+                </div>
+
+            </div>
+
+            <div style="display: flex;padding-top: 20px;flex-direction: column;">
+
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">PROGRAM NAME</ion-label>
+                    <ion-input style="width:45em;height: 40px;"></ion-input>
+
+                </div>
+
+                <div style="display: flex;padding-top: 20px;">
+                    <ion-label style="color: black;padding-right: 6px;">PROGRAM DESCRIPTION</ion-label>
+                    <ion-input style="width:40em;height: 40px;"></ion-input>
+
+                </div>
+
+            </div>
+
+            <div style="text-align: right;padding-top: 10px;">
+                <ion-button mode='ios'>SUBMIT</ion-button>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <!--
+            
+    ///////////////////////////////////////
+    ///////    UNIVERSITIES       //////
+    ////////////////////////////////////////
+        -->
+
+    <div style="display: flex;justify-content: center;align-items: center;flex-direction: column;"
+        *ngIf="currentdiv == 'university'">
+        <h1 style="color: black;font-family: headin;font-size: 30px;">UNIVERSITIES MANAGEMENT</h1>
+
+        <div style="background:white;max-width: 40%;height: 20em;padding: 20px;overflow-y: auto;">
+            <h2 style="color: black;font-family: headin;font-size: 19px;text-align: center;">UNIVERSITIES LISTED</h2>
+
+            <div style="display: flex;justify-content: center;">
+
+
+
+                <ion-select placeholder="SELECT COUNTRY " style="width: 30%;height: 40px;background-color: white;">
+                    <ion-select-option color="none" style="--background: white;"></ion-select-option>
+                </ion-select>
+
+
+                <div style="width: 10%;">
+
+                </div>
+                <ion-select placeholder="SELECT CITY " style="width: 30%;height: 40px;background-color: white;">
+                    <ion-select-option color="none" style="--background: white;"></ion-select-option>
+                </ion-select>
+
+            </div>
+            <div style="display: flex;justify-content: center;color: black;flex-direction: column;">
+
+                <ion-card *ngFor="let item of [].constructor(10)"
+                    style="background: white;color: black;max-width: 90%;">
+                    <ion-card-content>
+                        <div style="display: flex;justify-content: space-between;">
+                            <h4 style="font-family: text;color: black;"> University NAME</h4>
+                            <h4 style="font-family: text;color: black;"> Country</h4>
+                            <h4 style="font-family: text;color: black;"> City</h4>
+                        </div>
+
+                        <div style="padding-top: 10px;">
+                            <h4 style="font-family: text;color: black;">Lorem ipsum dolor sit, amet consectetur
+                                adipisicing elit. Quaerat aliquid sit nam sed in iure culpa assumenda est praesentium.
+                                Corporis ut consectetur iste quam est, temporibus quod pariatur assumenda tempora.</h4>
+
+                        </div>
+
+                        <div style="display: flex;justify-content: space-between;padding-top: 10px;">
+                            <h4 style="font-family: text;color: black;"> EMAIL</h4>
+                            <h4 style="font-family: text;color: black;"> TOTAL STUDENTS</h4>
+                            <h4 style="font-family: text;color: black;"> RANK</h4>
+                        </div>
+
+                        <br>
+                        <ion-button mode='ios' expand='block' color="danger">
+                            REMOVE
+                        </ion-button>
+                    </ion-card-content>
+
+                </ion-card>
+            </div>
+
+            <div style="width: 10%;">
+
+
+
+            </div>
+
+
+
+        </div>
+
+        <div style="background: white;min-height: 20em;min-width: 30em;position: relative;top: 5em;padding:20px;">
+
+            <h1 style="color: black;font-family: headin;text-align: center;">ADD A UNIVERSITY</h1>
+
+            <div style="display: flex;padding-top: 20px;">
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">UNIVERSITY NAME</ion-label>
+                    <ion-input style="width: 16em;height: 40px;"></ion-input>
+
+
+                </div>
+
+                <div style="display: flex;padding-left: 20px;">
+                    <ion-label style="color: black;padding-right: 6px;">COUNTRY</ion-label>
+                    <ion-input style="width: 19em;height: 40px;"></ion-input>
+
+                </div>
+
+            </div>
+
+            <div style="display: flex;padding-top: 20px;">
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">CITY</ion-label>
+                    <ion-input style="width: 15em;height: 40px;background-color: white;">
+
+                    </ion-input>
+
+                </div>
+
+
+
+                <div style="display: flex;padding-left: 20px;">
+                    <ion-label style="color: black;padding-right: 6px;">CONTACT NAME</ion-label>
+                    <ion-input style="width: 25em;height: 40px;"></ion-input>
+
+                </div>
+
+            </div>
+
+            <div style="display: flex;padding-top: 20px;">
+
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">CONTACT EMAIL</ion-label>
+                    <ion-input style="width: 45em;height: 40px;"></ion-input>
+
+                </div>
+
+            </div>
+
+            <div style="display: flex;padding-top: 20px;">
+                <ion-label style="color: black;padding-right: 6px;">DESCRIPTION</ion-label>
+                <ion-input style="width: 14em;height: 40px;"></ion-input>
+
+            </div>
+
+            <div style="display: flex;padding-top: 20px;">
+
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">TOTAL STUDENTS</ion-label>
+                    <ion-input style="width: 25%;height: 40px;"></ion-input>
+
+                </div>
+
+                <div style="width: 4%;">
+
+                </div>
+
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">INTERNATIONAL STUDENTS</ion-label>
+
+                    <ion-input style="width: 11.3em;height: 40px;background-color: white;">
+
+                    </ion-input>
+
+                </div>
+
+            </div>
+
+            <div style="display: flex;padding-top: 20px;">
+
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">GLOBAL RANK</ion-label>
+                    <ion-input style="width: 30px;height: 40px;"></ion-input>
+
+                </div>
+
+
+            </div>
+
+            <div style="height: 2px;width: 100%;background: black;position: relative;top: 0.7em;">
+
+            </div>
+
+            <h1 style="color: black;font-size: 20px;font-family: headin;">SCHOLARSHIPS</h1>
+            <div style="display: flex;padding-top: 10px;">
+
+
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">CATEGORY</ion-label>
+
+                    <ion-select style="width: 16em;height: 40px;background-color: white;">
+                        <ion-select-option style="background-color: white;"></ion-select-option>
+                    </ion-select>
+                </div>
+                <div style="width: 2em;">
+
+                </div>
+
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">NAME</ion-label>
+                    <ion-input style="width:20em;height: 40px;background-color: white;">
+                    </ion-input>
+
+                </div>
+
+            </div>
+
+
+            <div style="display: flex;padding-top: 20px;justify-content: space-between;">
+
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">AMOUNT</ion-label>
+                    <ion-input style="width: 280px;height: 40px;background-color: white;">
+
+                    </ion-input>
+
+                </div>
+
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">PERCENTAGE</ion-label>
+                    <ion-input style="width: 100%;height: 40px;"></ion-input>
+
+                </div>
+
+            </div>
+
+            <div style="display: flex;padding-top: 20px;justify-content: space-between;">
+
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">DESCRIPTION</ion-label>
+                    <ion-input style="width: 52em;height: 40px;"></ion-input>
+
+                </div>
+
+
+
+            </div>
+
+            <div style="height: 2px;width: 100%;background: black;position: relative;top: 1em;">
+
+            </div>
+
+            <div style="display: flex;padding-top: 10px;flex-direction: column;">
+                <h1 style="color: black;font-size: 20px;font-family: headin;">ADD PROGRAM</h1>
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">PROGRAM NAME</ion-label>
+                    <ion-input style="max-width:35em;height: 40px;"></ion-input>
+
+                </div>
+                <div style="height: 20px;">
+
+                </div>
+                <div style="display: flex;">
+                    <ion-label style="color: black;padding-right: 6px;">CATEGORY</ion-label>
+                    <ion-select style="width:20em;height: 40px;">
+                        <ion-select-option>
+
+                        </ion-select-option>
+                    </ion-select>
+
+                </div>
+
+            </div>
+
+            <div style="text-align: right;padding-top: 10px;">
+                <ion-button mode='ios'>SUBMIT</ion-button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--
+            
+    ///////////////////////////////////////
+    ///////    ADD ADMIn       //////
+    ////////////////////////////////////////
+        -->
+
+    <div style="display: flex;justify-content: center;align-items: center;position: relative;top:5em"
+        *ngIf="currentdiv=='addadmin'">
+        <div style="width: 67%;" class="formwrapper">
+            <h1 style="font-family: headin;" class="headinOne">ADD A NEW ADMIN</h1>
+            <div style="position: relative;left: 5em;">
+
+                <div class="field">
+                    <ion-label style="font-family: headin;">
+                        Name
+                    </ion-label>
+                    <ion-input class="adjustinput" style="width: 85%;"></ion-input>
+                </div>
+
+                <div class="field padtop">
+                    <ion-label style="font-family: headin;">
+                        Phone
+                    </ion-label>
+                    <ion-input class="adjustinput" style="width: 85%;"></ion-input>
+                </div>
+
+                <div class="field padtop">
+                    <ion-label style="font-family: headin;">
+                        Email
+                    </ion-label>
+                    <ion-input class="adjustinput" style="width: 85%;"></ion-input>
+                </div>
+
+                <div class="field padtop">
+                    <ion-label style="font-family: headin;">
+                        Passowrd
+                    </ion-label>
+                    <ion-input class="adjustinput" style="width: 85%;"></ion-input>
+                </div>
+
+
+
+                <div style="position: relative;top: 1.5em;" class="padtop">
+
+                    <ion-button class="" style="max-width: 85%;background-color: black;color: white;" color="none"
+                        expand='block' mode='ios'>
+                        REGISTER
+                    </ion-button>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--
+            
+    ///////////////////////////////////////
+    ///////    ADD locations       //////
+    ////////////////////////////////////////
+        -->
+
+    <div style="display: flex;justify-content: center;align-items: center;flex-direction: column;"
+        *ngIf="currentdiv == 'addlocation'">
+        <h1 style="color: black;font-family: headin;font-size: 30px;">LOCATIONS MANAGEMENT</h1>
+
+        <div
+            style="background:white;min-width: 50%;height: 20em;padding: 20px;overflow-y: auto;position: relative;top: 10em;">
+            <h2 style="color: black;font-family: headin;font-size: 19px;text-align: center;">UNIVERSITIES LISTED</h2>
+
+            <div style="display: flex;justify-content: center;flex-direction: column;">
+
+
+
+                <ion-input placeholder="ADD COUNTRY " style="width: 100%;height: 40px;background-color: white;">
+
+                </ion-input>
+
+
+                <div style="height: 1em;">
+
+                </div>
+                <ion-input placeholder="ADD CITIES " style="width: 100%;height: 40px;background-color: white;">
+
+                </ion-input>
+
+                <div style="height: 1em;">
+
+                </div>
+
+                <ion-button mode='ios' color="primary">ADD</ion-button>
+
+            </div>
+            <div style="display: flex;color: black;">
+
+                <div style="display: flex;flex-direction: column;width: 50%;">
+                    <ion-card *ngFor="let item of [].constructor(10)"
+                        style="background: white;color: black;max-width: 90%;">
+                        <ion-card-content>
+
+
+
+                            <div style="display: flex;justify-content: space-between;padding-top: 10px;">
+                                <h4 style="font-family: text;color: black;"> COUNTRY</h4>
+
+                            </div>
+
+                            <br>
+                            <ion-button mode='ios' expand='block' color="danger">
+                                REMOVE
+                            </ion-button>
+                        </ion-card-content>
+
+                    </ion-card>
+                </div>
+
+
+                <div style="display: flex;flex-direction: column;width: 50%;">
+                    <ion-card *ngFor="let item of [].constructor(10)"
+                        style="background: white;color: black;max-width: 90%;">
+                        <ion-card-content>
+
+
+
+                            <div style="display: flex;justify-content: space-between;padding-top: 10px;">
+                                <h4 style="font-family: text;color: black;"> CITY</h4>
+
+                            </div>
+
+                            <br>
+                            <ion-button mode='ios' expand='block' color="danger">
+                                REMOVE
+                            </ion-button>
+                        </ion-card-content>
+
+                    </ion-card>
+                </div>
+
+            </div>
+
+            <div style="width: 10%;">
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+    </div>
+</ion-content>
+
+<ion-footer>
+    <div *ngIf="currentdiv != 'main'" style="position: absolute;bottom: 2px;">
+        <ion-button (click)="toggleforms('main')" mode='ios' color="danger" expand='large'>GOTO MAIN</ion-button>
+    </div>
+</ion-footer>

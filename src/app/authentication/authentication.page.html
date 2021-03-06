@@ -1,0 +1,197 @@
+<ion-content [fullscreen]="true">
+
+  <!--Mobile screen-->
+  <div *ngIf="width > 1000" class="body">
+
+    <div *ngIf="!signup" class="formwrapper">
+      <h1 style="font-family: headin;" class="headinOne">SIGN IN TO CONTINUE</h1>
+      <h2 style="font-family: text;" class="headinTow">Don't Have An Account? <span (click)="toggleforms()"
+          style="font-family:headin">SIGNUP</span></h2>
+
+      <div style="top: 3em;" class="center">
+
+        <div class="field">
+          <ion-label style="font-family: headin;">
+            Email
+          </ion-label>
+          <ion-input style="width: 60%;"></ion-input>
+        </div>
+
+        <div class="field padtop">
+          <ion-label style="font-family: headin;">
+            Passowrd
+          </ion-label>
+          <ion-input style="width: 60%;"></ion-input>
+        </div>
+
+        <div style="text-align: center;font-weight: bold;" class=" padtop">
+          <ion-label style="font-family: text;" class="forgotpass">
+            Forgot Password?
+          </ion-label>
+        </div>
+
+        <div class="padtop">
+
+          <ion-button (click)="gotoPage('home')" class="" style="max-width: 60%;background-color: black;color: white;" color="none" expand='block'
+            mode='ios'>
+            LOGIN
+          </ion-button>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div *ngIf="signup" class="formwrapper">
+      <h1 style="font-family: headin;" class="headinOne">GET YOURSELF REGISTERED IN SECONDS</h1>
+      <h2 style="font-family: text;" class="headinTow">Already Have An Account? <span (click)="toggleforms()"
+          style="font-family:headin">SIGNIN</span></h2>
+
+      <div class="center">
+
+        <div class="field">
+          <ion-label style="font-family: headin;">
+            Name
+          </ion-label>
+          <ion-input style="width: 60%;"></ion-input>
+        </div>
+
+        <div class="field padtop">
+          <ion-label style="font-family: headin;">
+            Phone
+          </ion-label>
+          <ion-input style="width: 60%;"></ion-input>
+        </div>
+
+        <div class="field padtop">
+          <ion-label style="font-family: headin;">
+            Email
+          </ion-label>
+          <ion-input style="width: 60%;"></ion-input>
+        </div>
+
+        <div class="field padtop">
+          <ion-label style="font-family: headin;">
+            Passowrd
+          </ion-label>
+          <ion-input style="width: 60%;"></ion-input>
+        </div>
+
+        <div style="text-align: center;font-weight: bold;" class=" padtop">
+          <ion-label style="font-family: text;" class="forgotpass">
+            Forgot Password?
+          </ion-label>
+        </div>
+
+        <div class="padtop">
+
+          <ion-button class="" style="max-width: 60%;background-color: black;color: white;" color="none" expand='block'
+            mode='ios'>
+            REGISTER
+          </ion-button>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!--WEB SCREEN-->
+  <div *ngIf="width < 1000" class="body">
+
+    <div style="width: 97%;" *ngIf="!signup" class="formwrapper">
+      <h1 style="font-family: headin;" class="headinOne">SIGN IN TO CONTINUE</h1>
+      <h2 style="font-family: text;" class="headinTow">Don't Have An Account? <span (click)="toggleforms()"
+          style="font-family:headin">SIGNUP</span></h2>
+
+      <div style="top: 3em;">
+
+        <div class="field">
+          <ion-label style="font-family: headin;">
+            Email
+          </ion-label>
+          <ion-input style="width: 85%;"></ion-input>
+        </div>
+
+        <div class="field padtop">
+          <ion-label style="font-family: headin;">
+            Passowrd
+          </ion-label>
+          <ion-input style="width: 85%;"></ion-input>
+        </div>
+
+        <div style="text-align: left;font-weight: bold;" class=" padtop">
+          <ion-label style="font-family: text;" class="forgotpass">
+            Forgot Password?
+          </ion-label>
+        </div>
+
+        <div class="padtop">
+
+          <ion-button (click)="gotoPage('home')" class="" style="max-width: 85%;background-color: black;color: white;" color="none" expand='block'
+            mode='ios'>
+            LOGIN
+          </ion-button>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div style="width: 97%;" *ngIf="signup" class="formwrapper">
+      <h1 style="font-family: headin;" class="headinOne">GET YOURSELF REGISTERED IN SECONDS</h1>
+      <h2 style="font-family: text;" class="headinTow">Already Have An Account? <span (click)="toggleforms()"
+          style="font-family:headin">SIGNIN</span></h2>
+
+      <div>
+
+        <div class="field">
+          <ion-label style="font-family: headin;">
+            Name
+          </ion-label>
+          <ion-input style="width: 85%;"></ion-input>
+        </div>
+
+        <div class="field padtop">
+          <ion-label style="font-family: headin;">
+            Phone
+          </ion-label>
+          <ion-input style="width: 85%;"></ion-input>
+        </div>
+
+        <div class="field padtop">
+          <ion-label style="font-family: headin;">
+            Email
+          </ion-label>
+          <ion-input style="width: 85%;"></ion-input>
+        </div>
+
+        <div class="field padtop">
+          <ion-label style="font-family: headin;">
+            Passowrd
+          </ion-label>
+          <ion-input style="width: 85%;"></ion-input>
+        </div>
+
+        <div style="text-align: center;font-weight: bold;" class=" padtop">
+          <ion-label style="font-family: text;" class="forgotpass">
+            Forgot Password?
+          </ion-label>
+        </div>
+
+        <div class="padtop">
+
+          <ion-button class="" style="max-width: 85%;background-color: black;color: white;" color="none" expand='block'
+            mode='ios'>
+            REGISTER
+          </ion-button>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>

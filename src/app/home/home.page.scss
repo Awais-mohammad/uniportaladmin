@@ -1,0 +1,91 @@
+ion-card:hover {
+    cursor: pointer;
+    border-radius: 28px;
+    transition: 0.3s ease-in;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+ion-input {
+    border: 2px solid rgba(0, 0, 1, 0.514);
+    color: black;
+    font-size: 10px;
+}
+ion-label {
+    font-family: headin;
+    font-size: 13px;
+    position: relative;
+    top: 1em;
+}
+ion-select {
+    border: 2px solid rgba(0, 0, 1, 0.514);
+    color: black;
+    ion-select-option {
+        --background: white;
+        color: black;
+    }
+}
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+}
+.formwrapper {
+    position: relative;
+    padding: 20px;
+    text-align: center;
+    background: white;
+    color: black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    height: 100%;
+    width: 40%;
+}
+//adfasdds
+.headinOne {
+    font-weight: bold;
+    font-size: 30px;
+}
+.headinTow {
+    position: relative;
+    font-size: 14px;
+}
+span {
+    color: rgba(14, 64, 172, 0.699);
+    font-weight: bold;
+}
+span:hover {
+    cursor: pointer;
+}
+ion-input {
+    border: 2px solid rgba(0, 0, 0, 0.514);
+    text-align: left;
+    font-family: text;
+}
+.field {
+    text-align: left;
+}
+.padtop {
+    padding-top: 10px;
+}
+.center {
+    top: 8%;
+    position: relative;
+    left: 18%;
+}
+.forgotpass:hover {
+    cursor: pointer;
+}
+ion-button {
+    font-family: headin;
+}
+
+h3:hover {
+    cursor: pointer;
+}
+.adjustinput {
+    position: relative;
+    top: 1.5em;
+}
