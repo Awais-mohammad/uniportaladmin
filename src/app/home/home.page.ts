@@ -41,6 +41,7 @@ interface program {
   lFeeUnit: string;
   iFee: number;
   iFeeUnit: string;
+  studentsUnit: string;
   cat: string;
   mode: string;
   pace: string;
@@ -101,6 +102,7 @@ export class HomePage {
     iFeeUnit: "",
     cat: "",
     mode: "",
+    studentsUnit: "",
     pace: "",
     url: "",
     email: "",
@@ -198,7 +200,7 @@ export class HomePage {
   chooselanguage(value) {
     console.log(value);
   }
-  
+
   registerAdmin() {
     if (!this.email) {
       alert('field cannot be blank')
@@ -216,8 +218,28 @@ export class HomePage {
       alert('field cannot be blank')
     }
     else {
+      const name = this.name;
+      const email = this.email;
+      const phone = this.phone
+      const password = this.password
+      const timeJoined = new Date()
 
-      alert('ALL OKEY')
+      this.afAuth.auth.createUserWithEmailAndPassword(this.email, this.password).then(user => {
+        const userID = user.user.uid;
+        this.fireStore.collection('admins').doc(userID).set({
+          name,
+          email,
+          phone,
+          password,
+          timeJoined,
+        }).then(() => {
+          alert('user added')
+        }).catch(Err => {
+          alert(JSON.stringify(Err.message))
+        })
+      }).catch(err => {
+        alert(JSON.stringify(err.message))
+      })
     }
   }
 
