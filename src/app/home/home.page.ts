@@ -176,6 +176,8 @@ export class HomePage {
   }
 
   getdata() {
+    this.programs = [];
+    this.unis = [];
     this.fireStore.collection('programs').get().forEach(data => {
       data.docs.forEach(element => {
         this.programs.push(element.data());
