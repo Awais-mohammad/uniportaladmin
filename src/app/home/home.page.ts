@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app'
 
 interface uni {
   name: string;
@@ -14,7 +15,7 @@ interface uni {
   iStudents: number;
   gRank: number;
   scholarship: [{
-    cat: string[];
+    cat: string;
     name: string;
     amount: number;
     per: number;
@@ -36,13 +37,12 @@ interface program {
   university: string;
   duration: string;
   durationUnit: string;
-  students: string;
   lFee: number;
   lFeeUnit: string;
   iFee: number;
   iFeeUnit: string;
   studentsUnit: string;
-  cat: string;
+  cat: any[];
   mode: string;
   pace: string;
   url: string;
@@ -75,7 +75,7 @@ export class HomePage {
     iStudents: 0,
     gRank: 0,
     scholarship: [{
-      cat: [],
+      cat: "",
       name: "",
       amount: 0,
       per: 0,
@@ -97,12 +97,11 @@ export class HomePage {
     university: "",
     duration: "",
     durationUnit: "",
-    students: "",
     lFee: 0,
     lFeeUnit: "",
     iFee: 0,
     iFeeUnit: "",
-    cat: "",
+    cat: [],
     mode: "",
     studentsUnit: "",
     pace: "",
@@ -120,6 +119,7 @@ export class HomePage {
     private afAuth: AngularFireAuth,
   ) {
     this.getdata();
+    this.checkLogin()
   }
 
   currentdiv: string = 'main';
@@ -130,7 +130,7 @@ export class HomePage {
   durationsavailable: string[] = ['days', 'months', 'years']
   currencyavailable: string[] = ['pound sterling', 'us dolar', 'euro', 'swiss franc', 'canadian dollar',]
   modesavailable: string[] = ['full-time', 'part-time', 'distance learning', 'classroom based', 'blended learning']
-  pacesarray: string[] = ['a', 'b', 'c', 'd']
+  pacesarray: string[] = ['< 20 years', '< 40 years', '< 50 years', '< 60 years']
   students: string[] = ['< 1,000', '< 10,000', '< 50,000', '> 100,000']
   categories: string[] = ['computing', 'engineering', 'management', 'health and sciences', 'pharmacy']
   scholarships: string[] = ['academic', 'community service', 'first in family', 'legacy', 'military', 'no essay', 'prestigeous', 'renewable', 'writing']
@@ -146,6 +146,23 @@ export class HomePage {
 
   naviagte(page) {
     this.router.navigate([page])
+  }
+
+  checkLogin() {
+    const authSub = this.afAuth.authState.subscribe(user => {
+      if (user) {
+        if (user.uid) {
+          console.log('user logged in with', user.uid);
+
+        }
+        else {
+          this.router.navigate(['authentication'])
+        }
+      }
+      else {
+        this.router.navigate(['authentication'])
+      }
+    })
   }
 
   submitUniForm() {
@@ -258,50 +275,47 @@ export class HomePage {
 
   }
 
-  /////PROGRAMS ADDITION CATEGORIES
-  programsarray: any[] = []
-  //////MAIN ARRAY NIAZI USE THIS FOR ADD PROGRAMS CATEGORIES
-  tempprograms: string;
 
+  programsarray: any[] = []
+  tempprograms: string;
 
   assigningtempprograms(values) {
     this.tempprograms = values;
     this.programsarray.push(this.tempprograms)
+    this.program.cat = this.programsarray;
+
 
   }
 
   deletetempprograms(index) {
     this.programsarray.splice(index, 1)
   }
-  /////UNIVERISTY SCHOLARSHIPS CATEGORIES
-  sholarshipsarray: any[] = []
-  //////MAIN ARRAY NIAZI USE THIS FOR UNIVERSITY Scholarships CATEGORIES
-  tempscholarships: string;
+  catname;
+  cat;
+  amount;
+  percentage;
 
-  univscholarships(value) {
-    this.tempscholarships = value
-    this.sholarshipsarray.push(this.tempscholarships)
+  description;
+
+  check() {
+    this.uni.scholarship.push(this.cat, this.catname, this.amount, this.percentage, this.description)
+    console.log(this.uni.scholarship);
+
   }
 
-  deletetempscholarships(index) {
+  programname;
+  programcat;
 
-    this.sholarshipsarray.splice(index, 1)
+  check2() {
+
+    this.uni.program.push(this.programcat, this.programname)
+    console.log(this.uni.program);
+
   }
 
-  /////UNIVERISTY PROGRAMS CATEGORIES
-  programcat: string;
-  //////MAIN ARRAY NIAZI USE THIS FOR UNIVERSITY PROGRAM CATEGORIES
-  programcatsarray: any[] = []
-
-  prgramscatsaddition(value) {
-    this.programcat = value
-    this.programcatsarray.push(this.programcat)
-    alert(this.programcatsarray)
-  }
-
-  removeprogramscats(index) {
-
-    this.programcatsarray.splice(index, 1)
+  logout() {
+    this.afAuth.auth.signOut()
+    this.checkLogin()
   }
 
 }

@@ -48,7 +48,7 @@ export class AuthenticationPage implements OnInit {
     }
     else {
       this.firebaseauth.auth.signInWithEmailAndPassword(this.email, this.password).then(() => {
-        alert('LOGGED IN SUCCESSFULL')
+        this.router.navigate(['home'])
       }).catch(err => {
         alert(JSON.stringify(err.message))
       })
