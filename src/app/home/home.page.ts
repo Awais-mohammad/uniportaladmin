@@ -51,6 +51,8 @@ interface program {
   name: string;
   desc: string;
   uid: string;
+
+
 }
 
 @Component({
@@ -245,7 +247,7 @@ export class HomePage {
   }
 
   chooseduration(value) {
-
+    alert(value)
   }
   temparray: any[] = []
   choosecat(value) {
@@ -255,4 +257,51 @@ export class HomePage {
     console.log(this.temparray);
 
   }
+
+  /////PROGRAMS ADDITION CATEGORIES
+  programsarray: any[] = []
+  //////MAIN ARRAY NIAZI USE THIS FOR ADD PROGRAMS CATEGORIES
+  tempprograms: string;
+
+
+  assigningtempprograms(values) {
+    this.tempprograms = values;
+    this.programsarray.push(this.tempprograms)
+
+  }
+
+  deletetempprograms(index) {
+    this.programsarray.splice(index, 1)
+  }
+  /////UNIVERISTY SCHOLARSHIPS CATEGORIES
+  sholarshipsarray: any[] = []
+  //////MAIN ARRAY NIAZI USE THIS FOR UNIVERSITY Scholarships CATEGORIES
+  tempscholarships: string;
+
+  univscholarships(value) {
+    this.tempscholarships = value
+    this.sholarshipsarray.push(this.tempscholarships)
+  }
+
+  deletetempscholarships(index) {
+
+    this.sholarshipsarray.splice(index, 1)
+  }
+
+  /////UNIVERISTY PROGRAMS CATEGORIES
+  programcat: string;
+  //////MAIN ARRAY NIAZI USE THIS FOR UNIVERSITY PROGRAM CATEGORIES
+  programcatsarray: any[] = []
+
+  prgramscatsaddition(value) {
+    this.programcat = value
+    this.programcatsarray.push(this.programcat)
+    alert(this.programcatsarray)
+  }
+
+  removeprogramscats(index) {
+
+    this.programcatsarray.splice(index, 1)
+  }
+
 }

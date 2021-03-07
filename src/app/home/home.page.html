@@ -76,16 +76,7 @@
                 </ion-card-content>
             </ion-card>
 
-            <ion-card style="background: white;min-height: 10em;width: 25em;">
-                <ion-card-content>
-                    <ion-icon style="font-size: 60px;color: black;" name="add-circle-outline"></ion-icon>
-                    <h1 style="font-family: headin;color: black;font-size: 18px;padding-top: 1em;">MANAGE LOCATIONS</h1>
-                    <p style="padding-top: 0.5em;font-family: text;color: black;">Lorem ipsum dolor sit amet consectetur
-                        adipisicing elit. Minima vitae dolores facere
-                        exercitationem magni. Neque iusto eum sapiente adipisci molestiae!</p>
-                    <ion-button (click)="toggleforms('addlocation')" mode='ios' fill='outline'>ADD</ion-button>
-                </ion-card-content>
-            </ion-card>
+           
 
         </div>
 
@@ -232,8 +223,10 @@
                     <ion-select [(ngModel)]="program.durationUnit" (ionChange)="chooseduration(program.durationUnit)"
                         style="width: 60px;height: 40px;background-color: white;">
                         <ion-select-option *ngFor="let item of durationsavailable" value='{{item}}'
-                            style="background-color: white;"></ion-select-option>
+                            style="background-color: white;">
+                            {{item}}</ion-select-option>
                     </ion-select>
+
                 </div>
 
                 <div style="width: 2em;">
@@ -276,7 +269,7 @@
                     <div style="width: 10px;">
 
                     </div>
-                    <ion-select (ionChange)="choosecat(temp)" [(ngModel)]="temp"
+                    <ion-select [(ngModel)]="tempprograms" (ionChange)="assigningtempprograms(tempprograms)"
                         style="width: 10.5em;height: 40px;background-color: white;">
                         <ion-select-option *ngFor="let item of categories" value='{{item}}'
                             style="background-color: white;">
@@ -286,6 +279,18 @@
 
                 </div>
 
+
+            </div>
+
+            <div *ngIf="programsarray" style="display: flex;padding-top: 20px;">
+                <div style="display: flex;flex-direction: row;background: silver;min-width:5em;max-height: 3em;border-radius: 25px;"
+                    *ngFor="let item of programsarray;let i=index">
+                    <p style="color: black;">
+                        {{item}}
+                    </p>
+                    <ion-icon (click)="deletetempprograms(i)" style="font-size: 25px;" color="danger"
+                        name="close-circle-outline"></ion-icon>
+                </div>
             </div>
 
             <div style="display: flex;padding-top: 20px;">
@@ -538,7 +543,7 @@
                 <div style="display: flex;">
                     <ion-label style="color: black;padding-right: 6px;">CATEGORY</ion-label>
 
-                    <ion-select (ionChange)="choosecat(temp)" [(ngModel)]="temp"
+                    <ion-select (ionChange)="univscholarships(temp)" [(ngModel)]="temp"
                         style="width: 16em;height: 40px;background-color: white;">
                         <ion-select-option *ngFor="let item of scholarships" value='{{item}}'
                             style="background-color: white;">{{item}}</ion-select-option>
@@ -556,6 +561,17 @@
 
                 </div>
 
+            </div>
+
+            <div *ngIf="sholarshipsarray" style="display: flex;padding-top: 20px;">
+                <div style="display: flex;flex-direction: row;background: silver;min-width:5em;max-height: 3em;border-radius: 25px;"
+                    *ngFor="let item of sholarshipsarray;let i=index">
+                    <p style="color: black;">
+                        {{item}}
+                    </p>
+                    <ion-icon (click)="deletetempscholarships(i)" style="font-size: 25px;" color="danger"
+                        name="close-circle-outline"></ion-icon>
+                </div>
             </div>
 
 
@@ -606,14 +622,26 @@
                 </div>
                 <div style="display: flex;">
                     <ion-label style="color: black;padding-right: 6px;">CATEGORY</ion-label>
-                    <ion-select (ionChange)="choosecat(temp)" [(ngModel)]="temp" style="width:20em;height: 40px;">
-                        <ion-select-option *ngFor="let item of categories" value='{{item}}'>
+                    <ion-select (ionChange)="prgramscatsaddition(programcat)" [(ngModel)]="programcat"
+                        style="width:20em;height: 40px;">
+                        <ion-select-option *ngFor="let item of categories;let i=index" value='{{item}}'>
                             {{item}}
                         </ion-select-option>
                     </ion-select>
 
                 </div>
 
+            </div>
+
+            <div *ngIf="programcatsarray" style="display: flex;padding-top: 20px;">
+                <div style="display: flex;flex-direction: row;background: silver;min-width:5em;max-height: 3em;border-radius: 25px;"
+                    *ngFor="let item of programcatsarray;let i=index">
+                    <p style="color: black;">
+                        {{item}}
+                    </p>
+                    <ion-icon (click)="removeprogramscats(i)" style="font-size: 25px;" color="danger"
+                        name="close-circle-outline"></ion-icon>
+                </div>
             </div>
 
             <div style="text-align: right;padding-top: 10px;">
