@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app'
+
 
 interface uni {
   name: string;
@@ -294,13 +294,19 @@ export class HomePage {
   cat;
   amount;
   percentage;
-
   description;
 
   check() {
-    this.uni.scholarship.push(this.cat, this.catname, this.amount, this.percentage, this.description)
-    console.log(this.uni.scholarship);
 
+    for (var i = 0; i < this.uni.scholarship.length; i++) {
+      this.uni.scholarship[i].name = this.catname
+      this.uni.scholarship[i].cat = this.cat
+      this.uni.scholarship[i].amount = this.amount
+      this.uni.scholarship[i].per = this.percentage
+      this.uni.scholarship[i].desc = this.description
+
+
+    }
   }
 
   programname;
@@ -308,8 +314,11 @@ export class HomePage {
 
   check2() {
 
-    this.uni.program.push(this.programcat, this.programname)
-    console.log(this.uni.program);
+    for (var i = 0; i < this.uni.program.length; i++) {
+      this.uni.program[i].name = this.programname
+      this.uni.program[i].cat = this.programcat
+    }
+
 
   }
 
