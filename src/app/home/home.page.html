@@ -539,62 +539,69 @@
             <div>
 
                 <h1 style="color: black;font-size: 20px;font-family: headin;">SCHOLARSHIPS</h1>
-                <div style="display: flex;padding-top: 10px;">
+
+                <div *ngFor="let schol of uni.scholarship">
+                    <div style="display: flex;padding-top: 10px;">
 
 
-                    <div style="display: flex;">
-                        <ion-label style="color: black;padding-right: 6px;">CATEGORY</ion-label>
+                        <div style="display: flex;">
+                            <ion-label style="color: black;padding-right: 6px;">CATEGORY</ion-label>
 
-                        <ion-select [(ngModel)]="cat" style="width: 16em;height: 40px;background-color: white;">
-                            <ion-select-option *ngFor="let item of scholarships" value='{{item}}'
-                                style="background-color: white;">{{item}}</ion-select-option>
-                        </ion-select>
-                    </div>
-                    <div style="width: 2em;">
+                            <ion-select [(ngModel)]="schol.cat"
+                                style="width: 16em;height: 40px;background-color: white;">
+                                <ion-select-option *ngFor="let item of scholarships" value='{{item}}'
+                                    style="background-color: white;">{{item}}</ion-select-option>
+                            </ion-select>
+                        </div>
+                        <div style="width: 2em;">
 
-                    </div>
+                        </div>
 
-                    <div style="display: flex;">
-                        <ion-label style="color: black;padding-right: 6px;">NAME</ion-label>
-                        <ion-input style="width:20em;height: 40px;background-color: white;" [(ngModel)]="catname">
-                        </ion-input>
+                        <div style="display: flex;">
+                            <ion-label style="color: black;padding-right: 6px;">NAME</ion-label>
+                            <ion-input style="width:20em;height: 40px;background-color: white;"
+                                [(ngModel)]="schol.name">
+                            </ion-input>
 
-                    </div>
-
-                </div>
-
-
-                <div style="display: flex;padding-top: 20px;justify-content: space-between;">
-
-                    <div style="display: flex;">
-                        <ion-label style="color: black;padding-right: 6px;">AMOUNT</ion-label>
-                        <ion-input style="width: 280px;height: 40px;background-color: white;" [(ngModel)]="amount">
-
-                        </ion-input>
-
-                    </div>
-
-                    <div style="display: flex;">
-                        <ion-label style="color: black;padding-right: 6px;">PERCENTAGE</ion-label>
-                        <ion-input style="width: 100%;height: 40px;" [(ngModel)]="percentage"></ion-input>
-
-                    </div>
-
-                </div>
-
-                <div style="display: flex;padding-top: 20px;justify-content: space-between;">
-
-                    <div style="display: flex;">
-                        <ion-label style="color: black;padding-right: 6px;">DESCRIPTION</ion-label>
-                        <ion-input style="width: 52em;height: 40px;" [(ngModel)]="description"></ion-input>
+                        </div>
 
                     </div>
 
 
+                    <div style="display: flex;padding-top: 20px;justify-content: space-between;">
 
+                        <div style="display: flex;">
+                            <ion-label style="color: black;padding-right: 6px;">AMOUNT</ion-label>
+                            <ion-input style="width: 280px;height: 40px;background-color: white;"
+                                [(ngModel)]="schol.amount">
+
+                            </ion-input>
+
+                        </div>
+
+                        <div style="display: flex;">
+                            <ion-label style="color: black;padding-right: 6px;">PERCENTAGE</ion-label>
+                            <ion-input style="width: 100%;height: 40px;" [(ngModel)]="schol.per"></ion-input>
+
+                        </div>
+
+                    </div>
+
+                    <div style="display: flex;padding-top: 20px;justify-content: space-between;">
+
+                        <div style="display: flex;">
+                            <ion-label style="color: black;padding-right: 6px;">DESCRIPTION</ion-label>
+                            <ion-input style="width: 52em;height: 40px;" [(ngModel)]="schol.desc"></ion-input>
+
+                        </div>
+
+
+
+                    </div>
+                    <div style="width:100%;border:1px solid black;margin:20px;"></div>
                 </div>
                 <div style="text-align: right;padding-top: 10px;">
-                    <ion-button (click)="check()" mode='ios'>ADD</ion-button>
+                    <ion-button (click)="addScholar()" mode='ios'>ADD</ion-button>
                 </div>
             </div>
             <div style="height: 2px;width: 100%;background: black;position: relative;top: 1em;">
@@ -603,26 +610,30 @@
 
             <div style="display: flex;padding-top: 10px;flex-direction: column;">
                 <h1 style="color: black;font-size: 20px;font-family: headin;">ADD PROGRAM</h1>
-                <div style="display: flex;">
-                    <ion-label style="color: black;padding-right: 6px;">PROGRAM NAME</ion-label>
-                    <ion-input style="max-width:35em;height: 40px;" [(ngModel)]="programname"></ion-input>
 
+                <div *ngFor="let pro of uni.program">
+                    <div style="display: flex;">
+                        <ion-label style="color: black;padding-right: 6px;">PROGRAM NAME</ion-label>
+                        <ion-input style="max-width:35em;height: 40px;" [(ngModel)]="pro.name"></ion-input>
+
+                    </div>
+                    <div style="height: 20px;">
+
+                    </div>
+                    <div style="display: flex;">
+                        <ion-label style="color: black;padding-right: 6px;">CATEGORY</ion-label>
+                        <ion-select [(ngModel)]="pro.cat" style="width:20em;height: 40px;">
+                            <ion-select-option *ngFor="let item of categories;let i=index" value='{{item}}'>
+                                {{item}}
+                            </ion-select-option>
+                        </ion-select>
+
+                    </div>
+
+                    <div style="width:100%;border:1px solid black;margin:20px;"></div>
                 </div>
-                <div style="height: 20px;">
-
-                </div>
-                <div style="display: flex;">
-                    <ion-label style="color: black;padding-right: 6px;">CATEGORY</ion-label>
-                    <ion-select [(ngModel)]="programcat" style="width:20em;height: 40px;">
-                        <ion-select-option *ngFor="let item of categories;let i=index" value='{{item}}'>
-                            {{item}}
-                        </ion-select-option>
-                    </ion-select>
-
-                </div>
-
                 <div style="text-align: right;padding-top: 10px;">
-                    <ion-button (click)="check2()" mode='ios'>ADD</ion-button>
+                    <ion-button (click)="addProgram()" mode='ios'>ADD</ion-button>
                 </div>
 
             </div>
@@ -664,7 +675,8 @@
                     <ion-label style="font-family: headin;">
                         Phone
                     </ion-label>
-                    <ion-input [(ngModel)]="phone" type='number' class="adjustinput" style="width: 85%;"></ion-input>
+                    <ion-input [(ngModel)]="phone" type='number' class="adjustinput" style="width: 85%;">
+                    </ion-input>
                 </div>
 
                 <div class="field padtop">

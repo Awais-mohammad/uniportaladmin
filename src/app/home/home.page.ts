@@ -170,6 +170,27 @@ export class HomePage {
     })
   }
 
+  addScholar() {
+    const testData = {
+      cat: "",
+      name: "",
+      amount: 0,
+      per: 0,
+      desc: "",
+    }
+    console.log(this.uni.scholarship);
+    this.uni.scholarship.push(testData);
+  }
+
+  addProgram() {
+    const testData = {
+      cat: "",
+      name: "",
+    }
+    console.log(this.uni.program);
+    this.uni.program.push(testData);
+  }
+
   submitUniForm() {
     this.uni.uid = this.afAuth.auth.currentUser.uid;
     this.fireStore.collection('unis').add(this.uni).then(data => {
