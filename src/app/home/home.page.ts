@@ -120,6 +120,11 @@ export class HomePage {
   ) {
     this.getdata();
     this.checkLogin()
+
+    this.fireStore.collection('admins').valueChanges().subscribe(data => {
+      console.log(data);
+
+    })
   }
 
   currentdiv: string = 'main';
@@ -318,6 +323,7 @@ export class HomePage {
       this.uni.program[i].name = this.programname
       this.uni.program[i].cat = this.programcat
     }
+    console.log(this.uni.program);
 
 
   }

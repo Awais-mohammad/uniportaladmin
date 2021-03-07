@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFirestore } from 'angularfire2/firestore';
@@ -12,16 +13,23 @@ export class AppComponent {
   constructor(
     private afAuth: AngularFireAuth,
     private fireStore: AngularFirestore,
-    ) {
-      this.checkLogin();
-    }
+    private Router: Router,
+
+  ) {
+    this.checkLogin();
+
+  }
 
   checkLogin() {
     this.afAuth.authState.subscribe(res => {
-      if (res && !res.isAnonymous) {
+      if (res) {
+
+        if (res.uid) {
+          this.Router.navigate(['home'])
+        }
+
       } else {
-        this.afAuth.auth.signInAnonymously().then(res => {
-        })
+        this.Router.navigate(['authentication'])
       }
     })
   }
